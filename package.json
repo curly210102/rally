@@ -1,11 +1,9 @@
 {
   "name": "rally",
   "version": "0.0.1",
+  "private": true,
   "description": "Aggregate platforms",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/curly210102/rally.git"
@@ -15,5 +13,40 @@
   "bugs": {
     "url": "https://github.com/curly210102/rally/issues"
   },
-  "homepage": "https://github.com/curly210102/rally#readme"
+  "homepage": "https://github.com/curly210102/rally#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "esbuild": "^0.14.8"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "format": "prettier . --write --ignore-unknown",
+    "lint": "eslint .",
+    "build": "esbuild app.ts --bundle --outfile=out.js"
+  },
+  "lint-staged": {
+    "*.{js,mjs}": [
+      "eslint --fix"
+    ],
+    "!*.{js,mjs}": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.0.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/config-lerna-scopes": "^16.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "commitizen": "^4.2.4",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.1.4",
+    "prettier": "2.5.1"
+  }
 }
